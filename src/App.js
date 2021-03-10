@@ -17,8 +17,6 @@ function App() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    console.log(process.env);
-    
     getListProduct(1, 10);
   }, [])
 
