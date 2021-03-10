@@ -6,6 +6,7 @@ import config from './config.json'
 import Pagination from "react-js-pagination";
 
 function App() {
+  const url = process.env.URL_SERVER || config.url;
   let uploadStatusAlert;
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [uploadStatus, setUploadStatus] = useState();
@@ -20,7 +21,7 @@ function App() {
   }, [])
 
   const getListProduct = async (page, perPage) => {
-    let response = await axios.get(config.url + '/products', {
+    let response = await axios.get(url + '/products', {
       params: {
         page,
         perPage
@@ -46,7 +47,7 @@ function App() {
       }
     }
     try {
-      let response = await axios.post(config.url + '/products/upload', data, options);
+      let response = await axios.post(url + '/products/upload', data, options);
       inputRef.current.value = ""
       setUploadPercentage(0)
       getListProduct(1, 10)
